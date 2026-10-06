@@ -1,0 +1,942 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Tiki - Điện Thoại Máy Tính Bảng</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .top {
+            height: 30px;
+            background: white;
+            text-align: center;
+            color: #0877d1;
+            padding: 7px;
+            font-size: 11px;
+        }
+
+        header {
+            background: white;
+        }
+
+        .header {
+            width: 1200px;
+            height: 70px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            width: 75px;
+            text-align: center;
+            color: #0877d1;
+        }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 27px;
+            }
+
+            .logo small {
+                color: #777;
+            }
+
+        .search {
+            height: 40px;
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+            .search i {
+                margin-left: 12px;
+                color: #777;
+            }
+
+            .search input {
+                flex: 1;
+                border: 0;
+                outline: 0;
+                padding: 10px;
+            }
+
+            .search button {
+                height: 100%;
+                width: 90px;
+                border: 0;
+                background: white;
+                color: #0877d1;
+            }
+
+        .account {
+            font-size: 11px;
+        }
+
+            .account i {
+                font-size: 22px;
+                margin-right: 5px;
+            }
+
+        .cart {
+            color: #0877d1;
+            font-size: 24px;
+        }
+
+        .commit {
+            width: 1200px;
+            margin: auto;
+            height: 32px;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            font-size: 9px;
+            color: #666;
+        }
+
+            .commit i {
+                color: #0877d1;
+            }
+
+        main {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .breadcrumb {
+            height: 40px;
+            padding-top: 12px;
+            font-size: 10px;
+            color: #777;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 15px;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 12px;
+        }
+
+            .sidebar h3 {
+                font-size: 13px;
+            }
+
+            .sidebar a {
+                display: block;
+                color: #555;
+                text-decoration: none;
+                font-size: 10px;
+                padding: 7px 0;
+            }
+
+        .side-product {
+            border-top: 1px solid #eee;
+            margin-top: 10px;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .side-img {
+            height: 105px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+            .side-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        .side-product p {
+            font-size: 9px;
+        }
+
+        .stars {
+            color: #f5a623;
+            font-size: 10px;
+        }
+
+        .price {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .side-product button {
+            background: #0877d1;
+            color: white;
+            border: 0;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+
+        .title {
+            font-size: 21px;
+            margin: 0 0 12px;
+        }
+
+        .banner {
+            height: 165px;
+            background: linear-gradient(100deg,#e8f4ff,#c8d9f2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-text {
+            padding: 30px;
+        }
+
+            .banner-text h2 {
+                font-size: 20px;
+                margin: 0 0 10px;
+            }
+
+            .banner-text p {
+                font-size: 11px;
+            }
+
+            .banner-text button {
+                background: #0877d1;
+                color: white;
+                border: 0;
+                padding: 7px 18px;
+                border-radius: 4px;
+            }
+
+        .phone {
+            position: absolute;
+            bottom: -25px;
+            width: 65px;
+            height: 125px;
+            border: 3px solid #333;
+            border-radius: 12px;
+        }
+
+        .phone1 {
+            right: 170px;
+            background: #777;
+            transform: rotate(-10deg);
+        }
+
+        .phone2 {
+            right: 95px;
+            background: #333;
+        }
+
+        .phone3 {
+            right: 25px;
+            background: #555;
+            transform: rotate(10deg);
+        }
+
+        .section-title {
+            font-size: 14px;
+            margin: 15px 0 8px;
+        }
+
+        .categories {
+            background: white;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            text-align: center;
+        }
+
+        .cat-icon {
+            width: 55px;
+            height: 55px;
+            margin: auto;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            color: #777;
+        }
+
+        .categories p {
+            font-size: 10px;
+        }
+
+        .filter,
+        .tags {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 9px;
+        }
+
+        .filter {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+            .filter button {
+                border: 1px solid #ddd;
+                background: white;
+                border-radius: 12px;
+                padding: 4px 8px;
+                font-size: 8px;
+            }
+
+        .tags {
+            display: flex;
+            gap: 25px;
+        }
+
+            .tags b {
+                color: #0877d1;
+            }
+
+        .product-head {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0 8px;
+        }
+
+            .product-head h3 {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .product-head select {
+                border: 1px solid #ddd;
+                font-size: 9px;
+            }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 8px;
+        }
+
+        .product {
+            background: white;
+            padding: 8px;
+            position: relative;
+        }
+
+        .product-img {
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+            .product-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        .p1 {
+            background: #f5f5f5;
+        }
+
+        .p2 {
+            background: #eef3f8;
+        }
+
+        .p3 {
+            background: #e9f7f5;
+        }
+
+        .p4 {
+            background: #f0f0fa;
+        }
+
+        .ad {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 8px;
+            color: #888;
+        }
+
+        .brand {
+            font-size: 8px;
+            color: #777;
+            margin-top: 7px;
+        }
+
+        .product h4 {
+            height: 30px;
+            font-size: 10px;
+            font-weight: normal;
+            margin: 5px 0;
+        }
+
+        .sold {
+            color: #777;
+            font-size: 8px;
+        }
+
+        .product .price {
+            font-size: 14px;
+            margin-left: 0;
+        }
+
+        .info,
+        .delivery {
+            font-size: 8px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .delivery {
+            border-top: 1px solid #eee;
+            padding-top: 7px;
+        }
+
+            .delivery b {
+                color: red;
+            }
+
+        footer {
+            width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top">
+        Freeship đơn từ 45k, giảm nhiều hơn với Tiki
+    </div>
+
+    <header>
+
+        <div class="header">
+
+            <div class="logo">
+                <h1>TIKI</h1>
+                <small>Tốt & Nhanh</small>
+            </div>
+
+            <div class="search">
+                <i class="fas fa-search"></i>
+                <input placeholder="Tìm kiếm sản phẩm, danh mục hay thương hiệu..." />
+                <button>Tìm kiếm</button>
+            </div>
+
+            <div class="account">
+                <i class="far fa-user"></i>
+                Đăng nhập<br />
+                <b>Tài khoản</b>
+            </div>
+
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+
+        </div>
+
+        <div class="commit">
+            <span>Cam kết</span>
+            <span>100% hàng thật</span>
+            <span>Hoàn 200% nếu hàng giả</span>
+            <span>30 ngày đổi trả</span>
+            <span>Giao nhanh 2h</span>
+            <span>Giá siêu rẻ</span>
+        </div>
+
+    </header>
+
+    <main>
+
+        <div class="breadcrumb">
+            Trang chủ &nbsp;›&nbsp; Điện Thoại - Máy Tính Bảng
+        </div>
+
+        <div class="layout">
+
+            <aside class="sidebar">
+
+                <h3>Khám phá theo danh mục</h3>
+
+                <a>Điện thoại Smartphone</a>
+                <a>Máy tính bảng</a>
+                <a>Máy đọc sách</a>
+                <a>Điện thoại phổ thông</a>
+                <a>Điện thoại bàn</a>
+
+                <!-- HÌNH SẢN PHẨM BÊN TRÁI -->
+
+                <div class="side-product">
+
+                    <div class="side-img">
+                        <img src="~/Content/Images/iphone-16-pro-titan-tu-nhien.png" />
+                    </div>
+
+                    <small>Tiki Trading</small>
+
+                    <p>
+                        Apple iPhone 16 Pro Max - Titan Tự Nhiên - 512GB
+                    </p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="price">
+                        40.990.000đ
+                    </div>
+
+                    <button>Xem thêm</button>
+
+                </div>
+
+
+                <div class="side-product">
+
+                    <div class="side-img">
+                        <img src="~/Content/Images/Galaxy-didong-iphone-16-promax-1001.jpg" />
+                    </div>
+
+                    <small>Tiki Trading</small>
+
+                    <p>
+                        Apple iPhone 16 Pro - Titan Tự Nhiên - 128GB
+                    </p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="price">
+                        28.990.000đ
+                    </div>
+
+                    <button>Xem thêm</button>
+
+                </div>
+
+            </aside>
+
+
+            <section>
+
+                <h2 class="title">
+                    Điện Thoại - Máy Tính Bảng
+                </h2>
+
+
+                <div class="banner">
+
+                    <div class="banner-text">
+
+                        <h2>
+                            Mở bán chính thức iPhone 16 Series
+                        </h2>
+
+                        <p>
+                            Trải nghiệm sản phẩm mới nhất
+                        </p>
+
+                        <button>
+                            Mua ngay
+                        </button>
+
+                    </div>
+
+                    <div class="phone phone1"></div>
+                    <div class="phone phone2"></div>
+                    <div class="phone phone3"></div>
+
+                </div>
+
+
+                <div class="section-title">
+                    Khám phá theo danh mục
+                </div>
+
+
+                <div class="categories">
+
+                    <div>
+
+                        <div class="cat-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+
+                        <p>
+                            Điện thoại Smartphone
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="cat-icon">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+
+                        <p>
+                            Máy tính bảng
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="cat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+
+                        <p>
+                            Máy đọc sách
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="cat-icon">
+                            <i class="fas fa-mobile"></i>
+                        </div>
+
+                        <p>
+                            Điện thoại phổ thông
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="cat-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+
+                        <p>
+                            Điện thoại bàn
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filter">
+
+                    <b>ROM</b>
+
+                    <button>128GB</button>
+                    <button>256GB</button>
+                    <button>64GB</button>
+
+                    <b>Thương hiệu</b>
+
+                    <button>Samsung</button>
+                    <button>Xiaomi</button>
+                    <button>OPPO</button>
+
+                </div>
+
+
+                <div class="tags">
+
+                    <span>
+                        <b>NEW</b> Giao siêu tốc 2H
+                    </span>
+
+                    <span>
+                        <b>TOP DEAL</b> Siêu rẻ
+                    </span>
+
+                    <span>
+                        <b>FREESHIP EXTRA</b>
+                    </span>
+
+                    <span>
+                        Từ 4 sao
+                    </span>
+
+                    <span>
+                        <i class="fas fa-filter"></i> Tất cả
+                    </span>
+
+                </div>
+
+
+                <div class="product-head">
+
+                    <h3>
+                        Tất cả sản phẩm
+                    </h3>
+
+                    <select>
+
+                        <option>
+                            Sắp xếp: Phổ biến
+                        </option>
+
+                        <option>
+                            Giá thấp đến cao
+                        </option>
+
+                        <option>
+                            Giá cao đến thấp
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="products">
+
+
+                    <!-- SẢN PHẨM 1 -->
+
+                    <div class="product">
+
+                        <div class="product-img p1">
+
+                            <img src="~/Content/Images/iphone-16-pro-titan-tu-nhien.png" />
+
+                        </div>
+
+                        <span class="ad">
+                            AD
+                        </span>
+
+                        <div class="brand">
+                            APPLE
+                        </div>
+
+                        <h4>
+                            Apple iPhone 16 Pro Max
+                        </h4>
+
+                        <div class="stars">
+
+                            ★★★★★
+
+                            <span class="sold">
+                                Đã bán 95
+                            </span>
+
+                        </div>
+
+                        <div class="price">
+                            40.990.000đ
+                        </div>
+
+                        <div class="info">
+                            1 Màu sắc &nbsp; 1 Dung lượng
+                        </div>
+
+                        <div class="delivery">
+                            <b>NOW</b> Giao siêu tốc 2h
+                        </div>
+
+                    </div>
+
+
+                    <!-- SẢN PHẨM 2 -->
+
+                    <div class="product">
+
+                        <div class="product-img p2">
+
+                            <img src="~/Content/Images/Galaxy-didong-iphone-16-promax-1001.jpg" />
+
+                        </div>
+
+                        <span class="ad">
+                            AD
+                        </span>
+
+                        <div class="brand">
+                            APPLE
+                        </div>
+
+                        <h4>
+                            Apple iPhone 16 Pro
+                        </h4>
+
+                        <div class="stars">
+
+                            ★★★★★
+
+                            <span class="sold">
+                                Đã bán 48
+                            </span>
+
+                        </div>
+
+                        <div class="price">
+                            31.990.000đ
+                        </div>
+
+                        <div class="info">
+                            2 Màu sắc &nbsp; 2 Dung lượng
+                        </div>
+
+                        <div class="delivery">
+                            <b>NOW</b> Giao siêu tốc 2h
+                        </div>
+
+                    </div>
+
+
+                    <!-- SẢN PHẨM 3 -->
+
+                    <div class="product">
+
+                        <div class="product-img p3">
+
+                            <img src="~/Content/Images/images.jfif" />
+
+                        </div>
+
+                        <span class="ad">
+                            AD
+                        </span>
+
+                        <div class="brand">
+                            APPLE
+                        </div>
+
+                        <h4>
+                            Apple iPhone 16 - Xanh Mòng Két - 256GB
+                        </h4>
+
+                        <div class="stars">
+
+                            ★★★★★
+
+                            <span class="sold">
+                                Đã bán 15
+                            </span>
+
+                        </div>
+
+                        <div class="price">
+                            25.490.000đ
+                        </div>
+
+                        <div class="info">
+                            5 Màu sắc &nbsp; 2 Dung lượng
+                        </div>
+
+                        <div class="delivery">
+                            <b>NOW</b> Giao siêu tốc 2h
+                        </div>
+
+                    </div>
+
+
+                    <!-- SẢN PHẨM 4 -->
+
+                    <div class="product">
+
+                        <div class="product-img p4">
+
+                            <img src="~/Content/Images/2070225095.jpeg" />
+
+                        </div>
+
+                        <span class="ad">
+                            AD
+                        </span>
+
+                        <div class="brand">
+                            APPLE
+                        </div>
+
+                        <h4>
+                            Apple iPhone 16 Plus
+                        </h4>
+
+                        <div class="stars">
+
+                            ★★★★★
+
+                            <span class="sold">
+                                Đã bán 12
+                            </span>
+
+                        </div>
+
+                        <div class="price">
+                            25.990.000đ
+                        </div>
+
+                        <div class="info">
+                            3 Màu sắc &nbsp; 2 Dung lượng
+                        </div>
+
+                        <div class="delivery">
+                            <b>NOW</b> Giao siêu tốc 2h
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <b>
+            PhamTrungNhat - 25DH110488
+        </b>
+
+        <span>
+            HTML - CSS - Font Awesome
+        </span>
+
+    </footer>
+
+</body>
+</html>
